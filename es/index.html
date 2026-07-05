@@ -25,7 +25,6 @@
 <helmet>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "9b1a63f35e7a4adea634012fc7f626b7"}'></script>
 <link rel="icon" type="image/png" href="../favicon.png">
-<script src="../image-slot.js"></script>
 <script async src="https://tally.so/widgets/embed.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,7 +194,7 @@ a{color:inherit}
           <div style="font-size:12.5px;color:#8a8475">{{ t.portal.pasteNote }}</div>
         </div>
         <p style="font-size:12.5px;line-height:1.5;color:#9a9384;margin:12px 0 0">{{ t.portal.botCheckNote }}</p>
-                <image-slot id="portal-screenshot" style="display:block;width:100%;height:auto;aspect-ratio:2480/1182;margin-top:20px" shape="rect" fit="contain" src="../images/portal-screenshot.png" placeholder="Drop a screenshot of the portal here"></image-slot>
+                <img src="../images/portal-screenshot.png" alt="" style="display:block;width:100%;height:auto;aspect-ratio:2480/1182;margin-top:20px;object-fit:contain">
       </div>
       <div style="display:flex;gap:16px;align-items:flex-start;border:1px solid #E8C989;background:#FBF3E4;padding:17px 20px;margin:0 0 30px">
         <div style="flex:none;width:42px;height:42px;border-radius:50%;background:#fff;border:2px solid #C6862C;display:flex;align-items:center;justify-content:center">
