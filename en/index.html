@@ -130,9 +130,6 @@ a{color:inherit}
     <!-- PAGE HEADER -->
     <div style="font-size:12px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0d5bb0;margin-bottom:20px">{{ t.kicker }}</div>
     <h1 style="{{ headlineStyle }}">{{ t.headline }}</h1>
-    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <div style="font-size:13px;font-weight:500;color:#8a8475;letter-spacing:.02em">{{ t.flagNote }}</div>
-    </div>
     <p style="font-family:'Newsreader',serif;font-size:21px;line-height:1.5;color:#6b6657;margin:26px 0 0;font-weight:400">{{ t.subtitle }}</p>
 
     <!-- COMMUNITY CTA -->
@@ -299,17 +296,8 @@ a{color:inherit}
               <div style="font-size:13px;line-height:1.5;color:#7A4B0C">{{ c.warning }}</div>
             </div>
             </sc-if>
-            <sc-if value="{{ c.keyDifference }}" hint-placeholder-val="{{ false }}">
-            <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)">
-              <div style="font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#0d5bb0;margin-bottom:4px">{{ c.keyDiffLabel }}</div>
-              <div style="font-size:13.5px;line-height:1.5;color:#46423a">{{ c.keyDifference }}</div>
-            </div>
-            </sc-if>
             <sc-if value="{{ c.reviewsUrl }}" hint-placeholder-val="{{ false }}">
             <a href="{{ c.reviewsUrl }}" target="_blank" rel="noopener" class="np-link" style="display:inline-block;margin-top:14px;font-size:13px;font-weight:600">{{ c.reviewsLabel }}</a>
-            </sc-if>
-            <sc-if value="{{ c.pickupNote }}" hint-placeholder-val="{{ false }}">
-            <p style="font-size:13px;line-height:1.55;color:#8a8475;margin:14px 0 0;font-style:italic;font-family:'Newsreader',serif">{{ c.pickupNote }}</p>
             </sc-if>
           </div>
           </sc-if>
@@ -572,7 +560,7 @@ a{color:inherit}
     <rect x="535" y="595" width="130" height="12" rx="6" fill="#b3ad9d"/>
   </svg>
 </template></x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;es&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = {
     lang: 'en',
@@ -639,7 +627,6 @@ class Component extends DCLogic {
             },
             "kicker": "Updated July 2026",
             "headline": "Renewing Your Nicaraguan Passport from Abroad",
-            "flagNote": "Not affiliated with the Government of Nicaragua or any consulate",
             "subtitle": "A clear guide for Nicaraguans living abroad.",
             "heroPlaceholder": "PHOTO — NICARAGUAN PASSPORT BOOKLET",
             "start": {
@@ -771,7 +758,7 @@ class Component extends DCLogic {
                               ]
                         }
                   ],
-                  "note": "All documents must be scanned and uploaded to the portal — nothing is submitted by mail. Files must be PDF or JPG (max 30 MB per file)."
+                  "note": "All documents must be scanned and uploaded to the portal — nothing is submitted by mail. Files must be PDF or JPG (max 30 MB per file). Make sure your document scans are clear and easy to read."
             },
             "consulates": {
                   "title": "Nicaraguan Consulates & Embassies",
@@ -810,14 +797,12 @@ class Component extends DCLogic {
                                     { "label": "Hours", "value": "Mon–Fri 9:00am–2:00pm · Sat 9:00am–1:00pm" },
                                     { "label": "Phone", "value": "+34 915 555 513 · +34 914 171 649" },
                                     { "label": "Emergency consular line", "value": "+34 665 293 867" },
-                                    { "label": "Email", "value": "consulnicespana@gmail.com · consulnic.madridespana@gmail.com" }
+                                    { "label": "Email", "value": "consulnicespana@gmail.com · consulnic.madridespana@gmail.com" },
+                                    { "label": "Pickup notification", "value": "The official process states you will receive an SMS when your passport is ready. In practice, some applicants receive no notification at all — if you've been waiting longer than expected, go to the embassy directly to ask; some have been handed their passport on the spot without ever being notified." }
                               ],
-                              "warning": "⚠️ The current address is temporary and may change — always verify before traveling. Phones are rarely answered; contact by email first.",
-                              "keyDiffLabel": "Key difference",
-                              "keyDifference": "Passport renewal in Spain is done entirely through the online portal — no in-person bank payment and no physical photo required. The photo is uploaded directly to the portal.",
+                              "warning": "⚠️ This is a new address. However, verify before traveling.",
                               "reviewsLabel": "See Google reviews",
                               "reviewsUrl": "https://www.google.com/search?q=Embajada+de+Nicaragua+en+Madrid+España",
-                              "pickupNote": "Pickup notification: The official process states you will receive a text message (SMS) to your registered mobile number when your passport is ready for pickup. In practice, some applicants report not receiving any notification — if you have been waiting longer than the expected timeframe, go to the embassy directly to inquire. Some applicants have arrived without any notification and been handed their passport on the spot.",
                               "spanFull": true
                         }
                   ],
@@ -932,7 +917,7 @@ class Component extends DCLogic {
                   "items": [
                         {
                               "q": "What if I don't have a Nicaraguan cédula?",
-                              "simpleA": "You can substitute a permanent resident card (Green Card), work permit, driver's license, valid passport from another nationality, or any other government-issued ID from your country of residence — see {{DOCLINK}} for the full list by application type."
+                              "simpleA": "You can substitute a permanent resident card (Green Card), work permit, driver's license, valid passport from another nationality, or any other government-issued ID from your country of residence."
                         },
                         {
                               "q": "Can a relative in Nicaragua apply for a passport on your behalf?",
@@ -1011,14 +996,14 @@ class Component extends DCLogic {
             },
             "community": {
                   "title": "Community",
-                  "body": "Welcome 👋. This is a free resource. This page came about after hearing repeated stories from Nicaraguans abroad struggling to renew their passports — information scattered across consulate flyers, social media, and word of mouth. The goal is to centralize what we've learned in one place, and keep it as up to date as possible — which means we rely on the community to flag changes as they happen.",
+                  "body": "Welcome 👋. This page came about after hearing repeated stories from Nicaraguans abroad struggling to renew their passports — information scattered across consulate flyers, social media, and word of mouth. The goal is to centralize what we've learned in one place, and keep it as up to date as possible — which means we rely on the community to flag changes as they happen.",
                   "shareLabel": "Share your experience",
                   "shareUrl": "mailto:info@nicapasaporte.com?subject=Experiencia%20%2F%20Sugerencia",
                   "reportLabel": "Report a change or suggest an improvement",
                   "reportUrl": "mailto:info@nicapasaporte.com?subject=Cambio%20en%20el%20proceso",
                   "suggestUrl": "mailto:info@nicapasaporte.com?subject=Sugerencia%20para%20la%20p%C3%A1gina",
                   "redditLabel": "Ask the Reddit community on r/Nicaragua",
-                  "redditUrl": "https://www.reddit.com/r/nicaragua/search/?q=pasaporte+passport&restrict_sr=1&sort=new",
+                  "redditUrl": "https://www.reddit.com/r/Nicaragua/",
                   "feedbackFabLabel": "Feedback",
                   "cookieBanner": {
                         "text": "This site uses basic cookies to understand how visitors use this guide. We don't sell your data.",
@@ -1070,7 +1055,6 @@ class Component extends DCLogic {
             },
             "kicker": "Actualizado julio 2026",
             "headline": "Renovación de tu Pasaporte Nicaragüense desde el Exterior",
-            "flagNote": "Sin afiliación con el Gobierno de Nicaragua ni ningún consulado",
             "subtitle": "Una guía clara para nicaragüenses que viven en el exterior.",
             "heroPlaceholder": "FOTO — LIBRETÍN DE PASAPORTE NICARAGÜENSE",
             "start": {
@@ -1202,7 +1186,7 @@ class Component extends DCLogic {
                               ]
                         }
                   ],
-                  "note": "Todos los documentos deben escanearse y subirse al portal — nada se envía por correo. Formatos PDF o JPG (máx. 30 MB por archivo)."
+                  "note": "Todos los documentos deben escanearse y subirse al portal — nada se envía por correo. Formatos PDF o JPG (máx. 30 MB por archivo). Asegúrate de que tus escaneos sean claros y fáciles de leer."
             },
             "consulates": {
                   "title": "Consulados y Embajadas de Nicaragua",
@@ -1241,14 +1225,12 @@ class Component extends DCLogic {
                                     { "label": "Horario", "value": "Lun–Vie 9:00am–2:00pm · Sáb 9:00am–1:00pm" },
                                     { "label": "Teléfono", "value": "+34 915 555 513 · +34 914 171 649" },
                                     { "label": "Línea de emergencia consular", "value": "+34 665 293 867" },
-                                    { "label": "Correo", "value": "consulnicespana@gmail.com · consulnic.madridespana@gmail.com" }
+                                    { "label": "Correo", "value": "consulnicespana@gmail.com · consulnic.madridespana@gmail.com" },
+                                    { "label": "Notificación de retiro", "value": "El proceso oficial indica que recibirás un SMS cuando tu pasaporte esté listo. En la práctica, algunos solicitantes no reciben ninguna notificación — si llevas esperando más tiempo del previsto, ve directamente a la embajada a preguntar; a algunos les han entregado el pasaporte en el momento sin haber sido avisados." }
                               ],
-                              "warning": "⚠️ La dirección actual es temporal y puede cambiar — verifica siempre antes de viajar. Los teléfonos raramente son contestados; contacta primero por correo electrónico.",
-                              "keyDiffLabel": "Diferencia clave",
-                              "keyDifference": "En España, la renovación del pasaporte se realiza completamente a través del portal en línea — no se paga en banco ni se necesita foto física. La foto se sube directamente al portal.",
+                              "warning": "⚠️ Esta es una nueva dirección. Sin embargo, verifica siempre antes de viajar.",
                               "reviewsLabel": "Ver reseñas de Google",
                               "reviewsUrl": "https://www.google.com/search?q=Embajada+de+Nicaragua+en+Madrid+España",
-                              "pickupNote": "Notificación de retiro: El proceso oficial indica que recibirás un mensaje de texto (SMS) a tu número de móvil registrado cuando tu pasaporte esté listo para recoger. En la práctica, algunos solicitantes reportan no haber recibido ninguna notificación — si llevas esperando más tiempo del previsto, ve directamente a la embajada a preguntar. Algunos solicitantes han llegado sin ninguna notificación y les han entregado su pasaporte en el momento.",
                               "spanFull": true
                         }
                   ],
@@ -1361,7 +1343,7 @@ class Component extends DCLogic {
                   "items": [
                         {
                               "q": "¿Qué pasa si no tengo cédula nicaraguense?",
-                              "simpleA": "Puedes sustituirla con una tarjeta de residente permanente (Green Card), permiso de trabajo, licencia de conducir, pasaporte válido de otra nacionalidad, o cualquier otra identificación emitida por el gobierno de tu país de residencia — consulta {{DOCLINK}} para la lista completa según tu tipo de trámite."
+                              "simpleA": "Puedes sustituirla con una tarjeta de residente permanente (Green Card), permiso de trabajo, licencia de conducir, pasaporte válido de otra nacionalidad, o cualquier otra identificación emitida por el gobierno de tu país de residencia."
                         },
                         {
                               "q": "¿Puede un familiar en Nicaragua tramitar un pasaporte en tu nombre?",
@@ -1440,14 +1422,14 @@ class Component extends DCLogic {
             },
             "community": {
                   "title": "Comunidad",
-                  "body": "Bienvenido 👋. Este es un recurso gratuito. Esta página surgió tras escuchar historias repetidas de nicaragüenses en el exterior que luchan por renovar su pasaporte — información dispersa en volantes de consulados, redes sociales y de boca en boca. El objetivo es centralizar lo que hemos aprendido en un solo lugar, y mantenerlo lo más actualizado posible — lo cual significa que dependemos de la comunidad para avisarnos de los cambios a medida que ocurren.",
+                  "body": "Bienvenido 👋. Esta página surgió tras escuchar historias repetidas de nicaragüenses en el exterior que luchan por renovar su pasaporte — información dispersa en volantes de consulados, redes sociales y de boca en boca. El objetivo es centralizar lo que hemos aprendido en un solo lugar, y mantenerlo lo más actualizado posible — lo cual significa que dependemos de la comunidad para avisarnos de los cambios a medida que ocurren.",
                   "shareLabel": "Comparte tu experiencia",
                   "shareUrl": "mailto:info@nicapasaporte.com?subject=Experiencia%20%2F%20Sugerencia",
                   "reportLabel": "Reporta un cambio o sugiere una mejora",
                   "reportUrl": "mailto:info@nicapasaporte.com?subject=Cambio%20en%20el%20proceso",
                   "suggestUrl": "mailto:info@nicapasaporte.com?subject=Sugerencia%20para%20la%20p%C3%A1gina",
                   "redditLabel": "Pregunta a la comunidad de Reddit en r/Nicaragua",
-                  "redditUrl": "https://www.reddit.com/r/nicaragua/search/?q=pasaporte+passport&restrict_sr=1&sort=new",
+                  "redditUrl": "https://www.reddit.com/r/Nicaragua/",
                   "feedbackFabLabel": "Opinión",
                   "cookieBanner": {
                         "text": "Este sitio usa cookies básicas para entender cómo los visitantes usan esta guía. No vendemos tus datos.",
@@ -1511,7 +1493,7 @@ class Component extends DCLogic {
       });
       return React.createElement(React.Fragment, null, out);
     };
-    const nicaraguaNote = linkifyMint(t.nicaragua.note);
+    const nicaraguaNote = t.nicaragua.note;
     const copyPortalUrl = () => {
       const full = 'https://' + PORTAL_URL;
       const done = () => {
@@ -1773,7 +1755,7 @@ class Component extends DCLogic {
       feedbackMenuOpen: this.state.feedbackMenuOpen,
       toggleFeedbackMenu: () => this.setState((s) => ({ feedbackMenuOpen: !s.feedbackMenuOpen })),
       fabStyle: 'display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;background:#2E7FD1;color:#fff;border:none;border-radius:999px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.28)',
-      fabIcon: this.state.feedbackMenuOpen ? '\u00d7' : '\ud83d\udcac',
+      fabIcon: this.state.feedbackMenuOpen ? '\u00d7' : '\ud83d\udc4b',
       fabIconTransform: this.state.feedbackMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)',
       openFeedbackPopupMobile: () => {
         this.setState({ feedbackMenuOpen: false });
@@ -1793,8 +1775,8 @@ class Component extends DCLogic {
         }
       },
       stickyBarStyle, stickyInnerStyle, stickyNavStyle, stickyToggleStyle, mastNavStyle,
-      setEn: () => {},
-      setEs: () => { window.location.href = 'https://nicapasaporte.com/es/'; },
+      setEn: () => { window.location.href = 'https://nicapasaporte.com/en/'; },
+      setEs: () => {},
       enStyle: this.langBtnStyle(lang === 'en', false),
       esStyle: this.langBtnStyle(lang === 'es', false),
       enStyleSm: this.langBtnStyle(lang === 'en', true),
