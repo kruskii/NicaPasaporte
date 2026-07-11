@@ -398,7 +398,7 @@ class Component extends DCLogic {
   ];
 
   state = {
-    lang: 'es',
+    lang: (typeof location !== 'undefined' && new URLSearchParams(location.search).get('lang') === 'en') ? 'en' : 'es',
     isMobile: false,
     sticky: false,
     feedbackMenuOpen: false,
