@@ -163,6 +163,9 @@ a{color:inherit}
                 <sc-if value="{{ m.showFeeHint }}" hint-placeholder-val="{{ false }}">
                   <span style="font-size:11.5px;color:#1a5d3a">{{ t.lookup.feeHint }}</span>
                 </sc-if>
+                <sc-if value="{{ m.showReqFeeHint }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:11.5px;color:#7A4B0C">{{ t.lookup.reqFeeHint }}</span>
+                </sc-if>
               </span>
               <span style="{{ m.badgeStyle }};flex:none">{{ m.badgeLabel }}</span>
             </button>
@@ -185,6 +188,9 @@ a{color:inherit}
         </sc-if>
         <sc-if value="{{ resultShowFee }}" hint-placeholder-val="{{ false }}">
           <p style="font-size:13.5px;line-height:1.5;color:#1a5d3a;margin:14px 0 0">{{ t.lookup.feeNote }}</p>
+        </sc-if>
+        <sc-if value="{{ resultShowReqFee }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:13.5px;line-height:1.5;color:#7A4B0C;margin:14px 0 0">{{ t.lookup.reqFeeNote }}</p>
         </sc-if>
       </div>
       </sc-if>
@@ -294,6 +300,9 @@ a{color:inherit}
           <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8F6B26;margin-bottom:3px">{{ t.apply.timingLabel }}</div>
           <div style="font-size:14.5px;line-height:1.58;color:#6b6657">{{ t.apply.timingBody }}</div>
         </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#eef4fa;border:1px solid rgba(13,91,176,.2);padding:14px 16px;margin:0 0 22px">
+        <div style="font-size:13.5px;line-height:1.55;color:#1c3f63">{{ t.apply.feeSeparateNote }}</div>
       </div>
       <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0d5bb0;margin-bottom:14px">{{ t.apply.goodToKnowTitle }}</div>
       <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0">
@@ -473,6 +482,8 @@ class Component extends DCLogic {
         okLabel: 'No Visa Needed',
         feeHint: '→ $10 USD tourist card fee at entry',
         feeNote: 'Visa-exempt does not mean entry is free. All visa-exempt travelers must still pay a $10 USD Tourist Card fee upon arrival (by land, sea, or air), collected by Migración on behalf of Nicaragua\u2019s tourism institute (INTUR). This fee must be paid in cash — Nicaraguan customs does not accept credit or debit cards, so bring small USD bills.',
+        reqFeeHint: '→ Plus $10 USD tourist card fee at entry (cash only)',
+        reqFeeNote: 'Your visa fee is separate from the tourist card. Even after your visa is approved and paid for online, you\u2019ll still need to pay the $10 USD Tourist Card fee in cash upon arrival — same as visa-exempt travelers. Bring small USD bills, since Nicaraguan customs does not accept credit or debit cards.',
       },
       categoryc: {
         title: 'What Is a "Category C" Country?',
@@ -493,6 +504,7 @@ class Component extends DCLogic {
         portalLabel: 'Official Visa Portal',
         timingLabel: 'Timing warning',
         timingBody: 'Your visa is valid for only one month from its issue/payment date — not your travel date (user-reported). The portal confirms approved visas are emailed 15 days before your scheduled entry date, not right after applying. Apply close to your trip, not months in advance.',
+        feeSeparateNote: '\u2139\ufe0f Your visa fee is separate from the tourist card. Even after your visa is approved and paid for online, you\u2019ll still need to pay the $10 USD Tourist Card fee in cash upon arrival — same as visa-exempt travelers. Bring small USD bills, since Nicaraguan customs does not accept credit or debit cards.',
         goodToKnowTitle: 'Good to know',
         goodToKnow: [
           'Check submitted applications anytime under "Mis Trámites" — it shows your name, date, status, reference code, and payment link.',
@@ -570,6 +582,8 @@ class Component extends DCLogic {
         okLabel: 'Sin Visa',
         feeHint: '→ Tarifa de tarjeta de turista de $10 USD al ingresar',
         feeNote: 'Estar exento de visa no significa que la entrada sea gratuita. Todos los viajeros exentos de visa deben pagar una tarifa de Tarjeta de Turista de $10 USD al llegar (por tierra, mar o aire), cobrada por Migración en nombre del instituto de turismo de Nicaragua (INTUR). Esta tarifa debe pagarse en efectivo — la aduana nicaragüense no acepta tarjetas de crédito o débito, así que trae billetes pequeños en USD.',
+        reqFeeHint: '→ Más la tarifa de tarjeta de turista de $10 USD al ingresar (solo efectivo)',
+        reqFeeNote: 'Tu tarifa de visa es independiente de la tarjeta de turista. Incluso después de que tu visa esté aprobada y pagada en línea, deberás pagar la tarifa de Tarjeta de Turista de $10 USD en efectivo al llegar — igual que los viajeros exentos de visa. Trae billetes pequeños en USD, ya que la aduana nicaragüense no acepta tarjetas de crédito o débito.',
       },
       categoryc: {
         title: '¿Qué Es un País "Categoría C"?',
@@ -590,6 +604,7 @@ class Component extends DCLogic {
         portalLabel: 'Portal Oficial de Visas',
         timingLabel: 'Advertencia sobre el tiempo',
         timingBody: 'Tu visa es válida por solo un mes desde la fecha de emisión/pago — no desde tu fecha de viaje (reportado por usuarios). El portal confirma que las visas aprobadas se envían por correo 15 días antes de la fecha de entrada programada, no justo después de aplicar. Tramita cerca de tu viaje, no con meses de anticipación.',
+        feeSeparateNote: '\u2139\ufe0f Tu tarifa de visa es independiente de la tarjeta de turista. Incluso después de que tu visa esté aprobada y pagada en línea, deberás pagar la tarifa de Tarjeta de Turista de $10 USD en efectivo al llegar — igual que los viajeros exentos de visa. Trae billetes pequeños en USD, ya que la aduana nicaragüense no acepta tarjetas de crédito o débito.',
         goodToKnowTitle: 'Bueno saber',
         goodToKnow: [
           'Revisa tus solicitudes en cualquier momento bajo "Mis Trámites" — muestra tu nombre, fecha, estado, código de referencia y enlace de pago.',
@@ -694,6 +709,7 @@ class Component extends DCLogic {
         ? 'font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#7A4B0C;background:#FBF3E4;border:1px solid #E8C989;padding:4px 10px;white-space:nowrap'
         : 'font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#1a5d3a;background:#e9f5ee;border:1px solid #bfe2cd;padding:4px 10px;white-space:nowrap',
       showFeeHint: c.status === 'exempt',
+      showReqFeeHint: c.status === 'required',
     }));
 
     const hasQuery = q.length > 0;
@@ -712,6 +728,7 @@ class Component extends DCLogic {
       : 'margin-top:18px;border-left:4px solid #2f9e63;border-top:1px solid #bfe2cd;border-right:1px solid #bfe2cd;border-bottom:1px solid #bfe2cd;background:#e9f5ee;padding:20px 22px';
     const resultCaveat = selected && selected.caveat ? t.caveats[selected.caveat] : null;
     const resultShowFee = selected && selected.status === 'exempt';
+    const resultShowReqFee = selected && selected.status === 'required';
 
     const catcTab = this.state.catcTab;
     const catcTabs = [
@@ -782,7 +799,7 @@ class Component extends DCLogic {
       headlineStyle, h2Style,
       queryValue: this.state.query, onQueryChange: this.onQueryChange, hasQuery, clearQuery: this.clearQuery,
       showDropdown, matches, noMatches,
-      hasResult, resultName, resultBadgeLabel, resultBadgeStyle, resultBoxStyle, resultCaveat, resultShowFee,
+      hasResult, resultName, resultBadgeLabel, resultBadgeStyle, resultBoxStyle, resultCaveat, resultShowFee, resultShowReqFee,
       catcTabs, categoryCVisible, categoryCHasMore, categoryCListNote, categoryCToggleLabel, toggleCategoryCOpen: this.toggleCategoryCOpen,
       noVisaVisible, noVisaHasMore, noVisaToggleLabel, toggleNoVisaOpen: this.toggleNoVisaOpen,
       applyPortalUrl: 'https://tramitesconsulares.mint.gob.ni/Account/Login',
