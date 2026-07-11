@@ -65,6 +65,7 @@ a{color:inherit}
     </div>
     </sc-if>
     <div style="{{ stickyToggleStyle }}">
+      <a href="../" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;white-space:nowrap;color:#0d5bb0;text-decoration:none;border:1.5px solid #0d5bb0;border-radius:999px;padding:5px 12px">{{ t.passportLinkLabel }} <span aria-hidden="true">&rarr;</span></a>
       <button onClick="{{ setEs }}" style="{{ esStyleSm }}">ES</button>
       <span style="color:#c9c3b4">/</span>
       <button onClick="{{ setEn }}" style="{{ enStyleSm }}">EN</button>
@@ -85,10 +86,13 @@ a{color:inherit}
       </div>
       <div style="font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#8a8475;margin-top:9px">{{ t.tagline }}</div>
     </a>
-    <div style="display:flex;align-items:center;gap:9px;flex:none;padding-bottom:4px">
-      <button onClick="{{ setEs }}" style="{{ esStyle }}">ES</button>
-      <span style="color:#cbc5b6;font-size:13px">/</span>
-      <button onClick="{{ setEn }}" style="{{ enStyle }}">EN</button>
+    <div style="display:flex;align-items:center;gap:20px;flex:none;padding-bottom:4px;flex-wrap:wrap;justify-content:flex-end">
+      <a href="../" style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;white-space:nowrap;color:#0d5bb0;text-decoration:none;border:1.5px solid #0d5bb0;border-radius:999px;padding:7px 16px">{{ t.passportLinkLabel }} <span aria-hidden="true">&rarr;</span></a>
+      <div style="display:flex;align-items:center;gap:9px">
+        <button onClick="{{ setEs }}" style="{{ esStyle }}">ES</button>
+        <span style="color:#cbc5b6;font-size:13px">/</span>
+        <button onClick="{{ setEn }}" style="{{ enStyle }}">EN</button>
+      </div>
     </div>
   </div>
   <div style="height:2px;background:#1a1812"></div>
@@ -322,25 +326,9 @@ a{color:inherit}
     <section id="summary" style="scroll-margin-top:72px;margin-top:56px">
       <div style="display:flex;align-items:baseline;gap:12px;border-top:2px solid #1a1812;padding-top:16px;margin-bottom:18px">
         <span style="font-size:12px;font-weight:700;letter-spacing:.1em;color:#0d5bb0">07</span>
-        <h2 style="{{ h2Style }}">{{ t.summary.title }}</h2>
+        <h2 style="{{ h2Style }}">{{ t.summary.faqTitle }}</h2>
         <span style="margin-left:auto;align-self:center;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#a39c8c;white-space:nowrap">{{ t.verifiedTag }}</span>
       </div>
-      <div style="border:1px solid rgba(0,0,0,.14);background:#fff;margin-bottom:36px">
-        <div style="padding:8px 22px 6px">
-          <sc-for list="{{ t.summary.rows }}" as="row" hint-placeholder-count="4">
-            <div style="display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.07)">
-              <span style="font-size:14.5px;color:#3a362c">{{ row.label }}</span>
-              <sc-if value="{{ row.link }}" hint-placeholder-val="{{ false }}">
-                <a href="{{ row.link }}" class="np-link" style="font-family:'Newsreader',serif;font-size:15.5px;font-weight:600;text-align:right">{{ row.value }}</a>
-              </sc-if>
-              <sc-if value="{{ !row.link }}" hint-placeholder-val="{{ true }}">
-                <span style="font-family:'Newsreader',serif;font-size:15.5px;font-weight:600;color:#1a1812;text-align:right">{{ row.value }}</span>
-              </sc-if>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-      <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0d5bb0;margin-bottom:6px">{{ t.summary.faqTitle }}</div>
       <div style="display:flex;flex-direction:column">
         <sc-for list="{{ faqItems }}" as="item" hint-placeholder-count="5">
           <div style="border-bottom:1px solid rgba(0,0,0,.08)">
@@ -399,7 +387,7 @@ class Component extends DCLogic {
   ];
 
   state = {
-    lang: (typeof location !== 'undefined' && new URLSearchParams(location.search).get('lang') === 'es') ? 'es' : 'en',
+    lang: 'en',
     isMobile: false,
     sticky: false,
     feedbackMenuOpen: false,
@@ -455,9 +443,10 @@ class Component extends DCLogic {
       tagline: 'Visa Requirements Guide · Category C Countries',
       onThisPage: 'On this page',
       kicker: 'Updated July 2026',
-      headline: 'Nicaragua Visa Requirements for Category C Countries',
-      subtitle: 'Find out if your country needs a visa to enter Nicaragua — and how to get one.',
+      headline: 'Nicaragua Visa Requirements',
+      subtitle: 'Traveling to Nicaragua? Find out if your country needs a visa to enter Nicaragua — and how to get one.',
       verifiedTag: 'Verified July 2026',
+      passportLinkLabel: 'Nicaraguan Passport',
       need: {
         p1: 'If you\u2019re a citizen of a country classified under Nicaragua\u2019s \u201cCategory C\u201d immigration list, you must obtain a visa before entering Nicaragua — regardless of where in the world you\u2019re applying from.',
         p2: 'This applies globally; it isn\u2019t tied to any specific country\u2019s embassy, since Nicaragua now processes visas through one centralized online portal.'
@@ -509,7 +498,7 @@ class Component extends DCLogic {
       },
       noembassy: {
         title: 'What If There\u2019s No Nicaraguan Embassy Near Me?',
-        body: 'Many countries — including Canada — no longer have an operating Nicaraguan embassy or consulate, part of a broader shift to the online portal. This does not block your visa application; no physical visit is needed.',
+        body: 'Many countries no longer have an operating Nicaraguan embassy or consulate, part of a broader shift to the online portal. This does not block your visa application; no physical visit is needed.',
       },
       summary: {
         title: 'Quick Summary',
@@ -522,11 +511,11 @@ class Component extends DCLogic {
         ],
       },
       faq: [
-        { q:'Do I need to apply through my country\u2019s embassy?', body:'No. Visas are processed through one centralized online portal, regardless of where you live.' },
+        { q:'Do I apply through the Nicaraguan embassy in my country?', body:'No. Visas are processed through one centralized online portal, regardless of where you live.' },
         { q:'How long is my visa valid before I travel?', body:'Only one month from the issue/payment date — not your intended travel date. Apply close to your trip.' },
         { q:'What if my country isn\u2019t Category A, B, or C in your lookup?', body:'Use the lookup tool above — if it doesn\u2019t appear, your country may fall under a different category not covered by this page. Check the official source linked in Section 02.' },
         { q:'I\u2019m from a "special conditions" country — what does that mean?', body:'It means the requirement applies only to ordinary passport holders. Diplomatic, official, or service passport holders may be exempt under bilateral agreements — confirm your passport type before applying.' },
-        { q:'Can I still apply if there\u2019s no embassy in my country?', body:'Yes — the entire process happens online through the visa portal, with no embassy visit required at any stage.' },
+        { q:'Can I still apply if there\u2019s no Nicaraguan embassy in my country?', body:'Yes — the entire process happens online through the visa portal, with no embassy visit required at any stage.' },
         { q:'When will I receive my visa outcome/notification?', body:'Notifications aren\u2019t immediate. The portal confirms approved visas are emailed about 15 days before your scheduled entry date — not right after you apply. Check "Mis Trámites" in the portal for your current status in the meantime.' },
       ],
       footer: {
@@ -551,6 +540,7 @@ class Component extends DCLogic {
       headline: 'Requisitos de Visa para Nicaragua — Países Categoría C',
       subtitle: 'Averigua si tu país necesita visa para entrar a Nicaragua — y cómo tramitarla.',
       verifiedTag: 'Verificado julio 2026',
+      passportLinkLabel: 'Pasaporte Nicaragüense',
       need: {
         p1: 'Si eres ciudadano de un país clasificado en la lista migratoria "Categoría C" de Nicaragua, debes obtener una visa antes de ingresar al país — sin importar desde dónde en el mundo estés tramitando.',
         p2: 'Esto aplica globalmente; no depende del consulado de ningún país en particular, ya que Nicaragua ahora procesa las visas a través de un solo portal en línea centralizado.'
@@ -747,7 +737,7 @@ class Component extends DCLogic {
     const stickyInnerStyle = 'max-width:1180px;margin:0 auto;padding:11px 28px;display:flex;align-items:center;gap:22px;flex-wrap:' + (isMobile ? 'wrap' : 'nowrap');
     const stickyNavStyle = 'display:flex;gap:18px;flex:1;min-width:0;overflow:hidden;order:2';
     const stickyToggleStyle = 'display:flex;align-items:center;gap:7px;flex:none;order:3;margin-left:auto';
-    const mastNavStyle = 'display:flex;gap:22px;flex-wrap:wrap;padding:14px 0';
+    const mastNavStyle = 'display:flex;gap:22px;flex-wrap:wrap;justify-content:center;padding:14px 0';
     const jumpSelectStyle = 'font-family:Archivo,system-ui,sans-serif;font-size:13px;font-weight:600;color:#23211a;background:#fff;border:1px solid rgba(0,0,0,.22);padding:9px 12px;width:100%';
     const jumpSelectStyleSm = 'font-family:Archivo,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#23211a;background:#fff;border:1px solid rgba(0,0,0,.22);padding:7px 10px;flex:1';
 
