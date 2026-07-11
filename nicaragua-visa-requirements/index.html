@@ -158,8 +158,13 @@ a{color:inherit}
         <div style="position:absolute;left:0;right:0;top:calc(100% + 6px);background:#fff;border:1px solid rgba(0,0,0,.2);box-shadow:0 10px 28px rgba(0,0,0,.12);z-index:50;max-height:280px;overflow-y:auto">
           <sc-for list="{{ matches }}" as="m" hint-placeholder-count="4">
             <button onClick="{{ m.onSelect }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(0,0,0,.07);padding:12px 16px;cursor:pointer;font-family:inherit">
-              <span style="font-size:14.5px;color:#1a1812">{{ m.name }}</span>
-              <span style="{{ m.badgeStyle }}">{{ m.badgeLabel }}</span>
+              <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                <span style="font-size:14.5px;color:#1a1812">{{ m.name }}</span>
+                <sc-if value="{{ m.showFeeHint }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:11.5px;color:#1a5d3a">{{ t.lookup.feeHint }}</span>
+                </sc-if>
+              </span>
+              <span style="{{ m.badgeStyle }};flex:none">{{ m.badgeLabel }}</span>
             </button>
           </sc-for>
           <sc-if value="{{ noMatches }}" hint-placeholder-val="{{ false }}">
@@ -177,6 +182,9 @@ a{color:inherit}
         </div>
         <sc-if value="{{ resultCaveat }}" hint-placeholder-val="{{ false }}">
           <p style="font-size:14px;line-height:1.58;color:#5b5648;margin:14px 0 0">{{ resultCaveat }}</p>
+        </sc-if>
+        <sc-if value="{{ resultShowFee }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:13.5px;line-height:1.5;color:#1a5d3a;margin:14px 0 0">{{ t.lookup.feeNote }}</p>
         </sc-if>
       </div>
       </sc-if>
@@ -232,6 +240,9 @@ a{color:inherit}
         <span style="margin-left:auto;align-self:center;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#a39c8c;white-space:nowrap">{{ t.verifiedTag }}</span>
       </div>
       <p style="font-size:16px;line-height:1.62;color:#3a362c;margin:0 0 20px">{{ t.novisa.body }}</p>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#eef4fa;border:1px solid rgba(13,91,176,.2);padding:14px 16px;margin:0 0 20px">
+        <div style="font-size:13.5px;line-height:1.55;color:#1c3f63">{{ t.novisa.feeNote }}</div>
+      </div>
       <div style="display:flex;flex-wrap:wrap;gap:8px">
         <sc-for list="{{ noVisaVisible }}" as="c" hint-placeholder-count="12">
           <span class="np-chip-ok">{{ c }}</span>
@@ -460,6 +471,8 @@ class Component extends DCLogic {
         noMatch: 'No country matches that search.',
         reqLabel: 'Visa Required',
         okLabel: 'No Visa Needed',
+        feeHint: '→ $10 USD tourist card fee at entry',
+        feeNote: 'Visa-exempt does not mean entry is free. All visa-exempt travelers must still pay a $10 USD Tourist Card fee upon arrival (by land, sea, or air), collected by Migración on behalf of Nicaragua\u2019s tourism institute (INTUR). This fee must be paid in cash — Nicaraguan customs does not accept credit or debit cards, so bring small USD bills.',
       },
       categoryc: {
         title: 'What Is a "Category C" Country?',
@@ -473,6 +486,7 @@ class Component extends DCLogic {
       novisa: {
         title: 'Countries That Do Not Need a Visa (Libre Visado)',
         body: 'Citizens of these 69 countries can enter Nicaragua without a visa.',
+        feeNote: '\u2139\ufe0f Note: Visa-exempt does not mean entry is free. All visa-exempt travelers must still pay a $10 USD Tourist Card fee upon arrival (by land, sea, or air), collected by Migraci\u00f3n on behalf of Nicaragua\u2019s tourism institute (INTUR). This fee must be paid in cash — Nicaraguan customs does not accept credit or debit cards, so bring small USD bills. Citizens of CA-4 Convention countries (Honduras, El Salvador, Guatemala) are exempt from this fee.',
       },
       apply: {
         title: 'How to Apply for a Nicaraguan Visa',
@@ -554,6 +568,8 @@ class Component extends DCLogic {
         noMatch: 'Ningún país coincide con esa búsqueda.',
         reqLabel: 'Se Necesita Visa',
         okLabel: 'Sin Visa',
+        feeHint: '→ Tarifa de tarjeta de turista de $10 USD al ingresar',
+        feeNote: 'Estar exento de visa no significa que la entrada sea gratuita. Todos los viajeros exentos de visa deben pagar una tarifa de Tarjeta de Turista de $10 USD al llegar (por tierra, mar o aire), cobrada por Migración en nombre del instituto de turismo de Nicaragua (INTUR). Esta tarifa debe pagarse en efectivo — la aduana nicaragüense no acepta tarjetas de crédito o débito, así que trae billetes pequeños en USD.',
       },
       categoryc: {
         title: '¿Qué Es un País "Categoría C"?',
@@ -567,6 +583,7 @@ class Component extends DCLogic {
       novisa: {
         title: 'Países Que NO Necesitan Visa (Libre Visado)',
         body: 'Los ciudadanos de estos 69 países pueden entrar a Nicaragua sin visa.',
+        feeNote: '\u2139\ufe0f Nota: Estar exento de visa no significa que la entrada sea gratuita. Todos los viajeros exentos de visa deben pagar una tarifa de Tarjeta de Turista de $10 USD al llegar (por tierra, mar o aire), cobrada por Migración en nombre del instituto de turismo de Nicaragua (INTUR). Esta tarifa debe pagarse en efectivo — la aduana nicaragüense no acepta tarjetas de crédito o débito, así que trae billetes pequeños en USD. Los ciudadanos de países del Convenio CA-4 (Honduras, El Salvador, Guatemala) están exentos de esta tarifa.',
       },
       apply: {
         title: 'Cómo Tramitar una Visa para Nicaragua',
@@ -676,6 +693,7 @@ class Component extends DCLogic {
       badgeStyle: c.status === 'required'
         ? 'font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#7A4B0C;background:#FBF3E4;border:1px solid #E8C989;padding:4px 10px;white-space:nowrap'
         : 'font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#1a5d3a;background:#e9f5ee;border:1px solid #bfe2cd;padding:4px 10px;white-space:nowrap',
+      showFeeHint: c.status === 'exempt',
     }));
 
     const hasQuery = q.length > 0;
@@ -693,6 +711,7 @@ class Component extends DCLogic {
       ? 'margin-top:18px;border-left:4px solid #C6862C;border-top:1px solid #E8C989;border-right:1px solid #E8C989;border-bottom:1px solid #E8C989;background:#FBF3E4;padding:20px 22px'
       : 'margin-top:18px;border-left:4px solid #2f9e63;border-top:1px solid #bfe2cd;border-right:1px solid #bfe2cd;border-bottom:1px solid #bfe2cd;background:#e9f5ee;padding:20px 22px';
     const resultCaveat = selected && selected.caveat ? t.caveats[selected.caveat] : null;
+    const resultShowFee = selected && selected.status === 'exempt';
 
     const catcTab = this.state.catcTab;
     const catcTabs = [
@@ -763,7 +782,7 @@ class Component extends DCLogic {
       headlineStyle, h2Style,
       queryValue: this.state.query, onQueryChange: this.onQueryChange, hasQuery, clearQuery: this.clearQuery,
       showDropdown, matches, noMatches,
-      hasResult, resultName, resultBadgeLabel, resultBadgeStyle, resultBoxStyle, resultCaveat,
+      hasResult, resultName, resultBadgeLabel, resultBadgeStyle, resultBoxStyle, resultCaveat, resultShowFee,
       catcTabs, categoryCVisible, categoryCHasMore, categoryCListNote, categoryCToggleLabel, toggleCategoryCOpen: this.toggleCategoryCOpen,
       noVisaVisible, noVisaHasMore, noVisaToggleLabel, toggleNoVisaOpen: this.toggleNoVisaOpen,
       applyPortalUrl: 'https://tramitesconsulares.mint.gob.ni/Account/Login',
