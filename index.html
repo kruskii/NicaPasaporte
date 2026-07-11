@@ -70,10 +70,12 @@ a{color:inherit}
     </div>
     </sc-if>
     <div style="{{ stickyToggleStyle }}">
-      <a href="nicaragua-visa-requirements/" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;white-space:nowrap;color:#0d5bb0;text-decoration:none;border:1.5px solid #0d5bb0;border-radius:999px;padding:5px 12px;margin-right:10px">{{ t.visaLinkLabel }} <span aria-hidden="true">&rarr;</span></a>
-      <button onClick="{{ setEs }}" style="{{ esStyleSm }}">ES</button>
-      <span style="color:#c9c3b4">/</span>
-      <button onClick="{{ setEn }}" style="{{ enStyleSm }}">EN</button>
+      <a href="nicaragua-visa-requirements/" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;white-space:nowrap;color:#0d5bb0;text-decoration:none;border:1.5px solid #0d5bb0;border-radius:999px;padding:5px 12px">{{ t.visaLinkLabel }} <span aria-hidden="true">&rarr;</span></a>
+      <div style="display:flex;align-items:center;gap:7px">
+        <button onClick="{{ setEs }}" style="{{ esStyleSm }}">ES</button>
+        <span style="color:#c9c3b4">/</span>
+        <button onClick="{{ setEn }}" style="{{ enStyleSm }}">EN</button>
+      </div>
     </div>
   </div>
   <div style="height:1px;background:rgba(0,0,0,.1)"></div>
@@ -1726,7 +1728,7 @@ class Component extends DCLogic {
       ? 'display:flex;align-items:center;gap:20px;flex:1 0 100%;padding-bottom:4px;flex-wrap:wrap;justify-content:space-between'
       : 'display:flex;align-items:center;gap:20px;flex:none;padding-bottom:4px;flex-wrap:wrap;justify-content:flex-end';
     const stickyToggleStyle = sm
-      ? 'display:flex;align-items:center;gap:7px;flex:none;order:2;margin-left:auto'
+      ? 'display:flex;align-items:center;gap:16px;flex:1 0 100%;order:4;justify-content:space-between'
       : 'display:flex;align-items:center;gap:7px;flex:none;order:3';
 
     const stickyBarStyle = 'position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(250,248,243,.94);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);transition:transform .28s ease,opacity .28s ease;' +

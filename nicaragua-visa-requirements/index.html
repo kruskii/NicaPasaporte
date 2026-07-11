@@ -66,9 +66,11 @@ a{color:inherit}
     </sc-if>
     <div style="{{ stickyToggleStyle }}">
       <a href="../" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;white-space:nowrap;color:#0d5bb0;text-decoration:none;border:1.5px solid #0d5bb0;border-radius:999px;padding:5px 12px">{{ t.passportLinkLabel }} <span aria-hidden="true">&rarr;</span></a>
-      <button onClick="{{ setEs }}" style="{{ esStyleSm }}">ES</button>
-      <span style="color:#c9c3b4">/</span>
-      <button onClick="{{ setEn }}" style="{{ enStyleSm }}">EN</button>
+      <div style="display:flex;align-items:center;gap:7px">
+        <button onClick="{{ setEs }}" style="{{ esStyleSm }}">ES</button>
+        <span style="color:#c9c3b4">/</span>
+        <button onClick="{{ setEn }}" style="{{ enStyleSm }}">EN</button>
+      </div>
     </div>
   </div>
   <div style="height:1px;background:rgba(0,0,0,.1)"></div>
@@ -484,7 +486,7 @@ class Component extends DCLogic {
           'Forgot your password, or has your account gone inactive? Both are handled from the login page.'
         ],
         steps: [
-          { n:'1', title:'Register on the platform', body:'A valid email is required — the details you provide are used for your application.' },
+          { n:'1', title:'Register on the portal', body:'A valid email is required — the details you provide are used for your application.' },
           { n:'2', title:'Complete the application form', body:'Have your passport biodata page and a photo of your face ready to upload.' },
           { n:'3', title:'Wait for review', body:'Immigration and Foreign Affairs review your application; you\u2019ll get an email notification when it\u2019s ready for payment.' },
           { n:'4', title:'Pay online', body:'A payment link is emailed to you. Visa and Mastercard are accepted.' },
@@ -578,7 +580,7 @@ class Component extends DCLogic {
           '¿Olvidaste tu contraseña o tu cuenta quedó inactiva? Ambos casos se resuelven desde la página de inicio de sesión.'
         ],
         steps: [
-          { n:'1', title:'Regístrate en la plataforma', body:'Se requiere un correo electrónico válido — los datos que ingreses se usan para tu solicitud.' },
+          { n:'1', title:'Regístrate en el portal', body:'Se requiere un correo electrónico válido — los datos que ingreses se usan para tu solicitud.' },
           { n:'2', title:'Llena el formulario de solicitud', body:'Ten lista la página de datos de tu pasaporte y una foto de tu rostro para subir.' },
           { n:'3', title:'Espera la revisión', body:'Migración y Cancillería revisan tu solicitud; recibirás un correo cuando esté lista para el pago.' },
           { n:'4', title:'Paga en línea', body:'Se te envía un enlace de pago por correo. Se aceptan Visa y Mastercard.' },
@@ -739,7 +741,9 @@ class Component extends DCLogic {
     const stickyBarStyle = 'position:fixed;top:0;left:0;right:0;z-index:60;background:#faf8f3;transform:translateY(' + (sticky ? '0' : '-100%') + ');transition:transform .25s ease';
     const stickyInnerStyle = 'max-width:1180px;margin:0 auto;padding:11px 28px;display:flex;align-items:center;gap:22px;flex-wrap:' + (isMobile ? 'wrap' : 'nowrap');
     const stickyNavStyle = 'display:flex;gap:18px;flex:1;min-width:0;overflow:hidden;order:2';
-    const stickyToggleStyle = 'display:flex;align-items:center;gap:7px;flex:none;order:3;margin-left:auto';
+    const stickyToggleStyle = isMobile
+      ? 'display:flex;align-items:center;gap:16px;flex:1 0 100%;order:4;justify-content:space-between'
+      : 'display:flex;align-items:center;gap:7px;flex:none;order:3;margin-left:auto';
     const mastNavStyle = 'display:flex;gap:22px;flex-wrap:wrap;justify-content:center;padding:14px 0';
     const jumpSelectStyle = 'font-family:Archivo,system-ui,sans-serif;font-size:13px;font-weight:600;color:#23211a;background:#fff;border:1px solid rgba(0,0,0,.22);padding:9px 12px;width:100%';
     const jumpSelectStyleSm = 'font-family:Archivo,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#23211a;background:#fff;border:1px solid rgba(0,0,0,.22);padding:7px 10px;flex:1';
