@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nicaragua Visa Requirements — Category C Countries | NicaPasaporte</title>
-<meta name="description" content="Find out if your country needs a visa to enter Nicaragua and how to apply — independent guide for travelers from Category C countries.">
-<meta property="og:title" content="Nicaragua Visa Requirements — Category C Countries">
+<title>Nicaragua Visa Requirements | NicaPasaporte</title>
+<meta name="description" content="Find out if your country needs a visa to enter Nicaragua and how to apply — independent guide for travelers.">
+<meta property="og:title" content="Nicaragua Visa Requirements">
 <meta property="og:description" content="Find out if your country needs a visa to enter Nicaragua and how to apply.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
@@ -442,7 +442,7 @@ class Component extends DCLogic {
 
   CONTENT = {
     en: {
-      tagline: 'Visa Requirements Guide · Category C Countries',
+      tagline: 'Visa Requirements Guide',
       onThisPage: 'On this page',
       kicker: 'Updated July 2026',
       headline: 'Nicaragua Visa Requirements',
@@ -475,7 +475,7 @@ class Component extends DCLogic {
         body: 'Citizens of these 69 countries can enter Nicaragua without a visa.',
       },
       apply: {
-        title: 'How to Apply for a Nicaragua Visa',
+        title: 'How to Apply for a Nicaraguan Visa',
         portalLabel: 'Official Visa Portal',
         timingLabel: 'Timing warning',
         timingBody: 'Your visa is valid for only one month from its issue/payment date — not your travel date (user-reported). The portal confirms approved visas are emailed 15 days before your scheduled entry date, not right after applying. Apply close to your trip, not months in advance.',
@@ -536,11 +536,11 @@ class Component extends DCLogic {
       },
     },
     es: {
-      tagline: 'Guía de Requisitos de Visa · Países Categoría C',
+      tagline: 'Guía de Requisitos de Visa',
       onThisPage: 'En esta página',
       kicker: 'Actualizado julio 2026',
-      headline: 'Requisitos de Visa para Nicaragua — Países Categoría C',
-      subtitle: 'Averigua si tu país necesita visa para entrar a Nicaragua — y cómo tramitarla.',
+      headline: 'Requisitos de Visa para Nicaragua',
+      subtitle: '¿Viajas a Nicaragua? Averigua si tu país necesita visa para entrar a Nicaragua — y cómo tramitarla.',
       verifiedTag: 'Verificado julio 2026',
       passportLinkLabel: 'Pasaporte Nicaragüense',
       need: {
@@ -594,7 +594,7 @@ class Component extends DCLogic {
       },
       noembassy: {
         title: '¿Qué Pasa Si No Hay Embajada de Nicaragua Cerca de Mí?',
-        body: 'Muchos países — incluyendo Canadá — ya no tienen una embajada o consulado de Nicaragua en funcionamiento, parte de un cambio más amplio hacia el portal en línea. Esto no bloquea tu solicitud de visa; no se necesita ninguna visita física.',
+        body: 'Muchos países ya no tienen una embajada o consulado de Nicaragua en funcionamiento, parte de un cambio más amplio hacia el portal en línea. Esto no bloquea tu solicitud de visa; no se necesita ninguna visita física.',
       },
       summary: {
         title: 'Resumen Rápido',
@@ -607,11 +607,11 @@ class Component extends DCLogic {
         ],
       },
       faq: [
-        { q:'¿Debo tramitar a través de la embajada de mi país?', body:'No. Las visas se procesan a través de un solo portal en línea centralizado, sin importar dónde vivas.' },
+        { q:'¿Tramito a través de la embajada de Nicaragua en mi país?', body:'No. Las visas se procesan a través de un solo portal en línea centralizado, sin importar dónde vivas.' },
         { q:'¿Cuánto tiempo es válida mi visa antes de viajar?', body:'Solo un mes desde la fecha de emisión/pago — no desde tu fecha de viaje prevista. Tramita cerca de tu viaje.' },
         { q:'¿Y si mi país no aparece como Categoría A, B o C en la búsqueda?', body:'Usa la herramienta de búsqueda arriba — si no aparece, tu país podría estar en una categoría distinta no cubierta en esta página. Revisa la fuente oficial enlazada en la Sección 02.' },
         { q:'Soy de un país con "condiciones especiales" — ¿qué significa?', body:'Significa que el requisito aplica solo a portadores de pasaporte ordinario. Los portadores de pasaporte diplomático, oficial o de servicio pueden estar exentos bajo acuerdos bilaterales — confirma tu tipo de pasaporte antes de aplicar.' },
-        { q:'¿Puedo tramitar si no hay embajada en mi país?', body:'Sí — todo el proceso ocurre en línea a través del portal de visas, sin necesidad de visitar una embajada en ninguna etapa.' },
+        { q:'¿Puedo tramitar si no hay embajada de Nicaragua en mi país?', body:'Sí — todo el proceso ocurre en línea a través del portal de visas, sin necesidad de visitar una embajada en ninguna etapa.' },
         { q:'¿Cuándo recibiré el resultado/notificación de mi visa?', body:'La notificación no es inmediata. El portal confirma que las visas aprobadas se envían por correo unos 15 días antes de tu fecha de entrada programada — no justo después de aplicar. Mientras tanto, revisa "Mis Trámites" en el portal para ver tu estado actual.' },
       ],
       footer: {
@@ -739,7 +739,9 @@ class Component extends DCLogic {
     const enStyleSm = this.langBtnStyle(lang === 'en', true);
 
     const stickyBarStyle = 'position:fixed;top:0;left:0;right:0;z-index:60;background:#faf8f3;transform:translateY(' + (sticky ? '0' : '-100%') + ');transition:transform .25s ease';
-    const stickyInnerStyle = 'max-width:1180px;margin:0 auto;padding:11px 28px;display:flex;align-items:center;gap:22px;flex-wrap:' + (isMobile ? 'wrap' : 'nowrap');
+    const stickyInnerStyle = isMobile
+      ? 'max-width:1180px;margin:0 auto;padding:9px 18px;display:flex;flex-wrap:wrap;align-items:center;column-gap:16px;row-gap:7px'
+      : 'max-width:1180px;margin:0 auto;padding:11px 28px;display:flex;align-items:center;gap:22px;flex-wrap:nowrap';
     const stickyNavStyle = 'display:flex;gap:18px;flex:1;min-width:0;overflow:hidden;order:2';
     const stickyToggleStyle = isMobile
       ? 'display:flex;align-items:center;gap:16px;flex:1 0 100%;order:4;justify-content:space-between'
